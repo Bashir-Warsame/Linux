@@ -438,8 +438,6 @@ cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
 
 ### Explanation
 
-### Explanation
-
 >The file content is encoded using the ROT13 cipher, which shifts each letter by 13 positions.  
 
 >**Syntax:** `tr SET1 SET2`  
