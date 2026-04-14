@@ -1,3 +1,7 @@
+##  Introduction
+
+**OverTheWire: Bandit** is a wargame designed to teach the basics of security and hacking through a series of progressive challenges. Each level requires finding a password to access the next level, teaching fundamental Linux commands, file manipulation, and security concepts along the way.
+
 ---
 
 ## Level 0 → Level 1
