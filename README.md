@@ -22,21 +22,6 @@ I’m building practical skills relevant to:
 
 ---
 
-## Learning Resources
-
-* OverTheWire Bandit – hands-on Linux and security fundamentals
-
-### Topics Covered
-
-* File navigation (`ls`, `cd`, `pwd`)
-* File operations (`cat`, `cp`, `mv`, `rm`)
-* Searching (`find`, `grep`)
-* Permissions (`chmod`, `chown`)
-* Processes & system monitoring
-* Networking basics
-
----
-
 ##  Bandit Progress
 
 | Level | Concept Learned          | Notes                        |
@@ -50,15 +35,7 @@ I’m building practical skills relevant to:
 
 ---
 
-## 🔧 Key Commands Learned
+## Key Commands Learned
 
-```bash
-ls        # list files
-cd        # change directory
-cat       # read file contents
-file      # identify file type
-find      # search for files
-grep      # search inside files
-```
-
+refer to  [Commands Guide](commands.md) for learning notes on Linux module
 
