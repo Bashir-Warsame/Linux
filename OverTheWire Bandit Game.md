@@ -506,3 +506,137 @@ FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 ```
 
 ---
+---
+
+## Level 13 → Level 14
+
+### Level Info
+
+>The password for the next level is stored in **/etc/bandit_pass/bandit14 and can only be read by user bandit14**. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Look at the commands that logged you into previous bandit levels, and find out how to use the key for this level.
+
+---
+
+### Commands
+
+```bash
+ls
+cat sshkey.private
+exit
+nano bandit14.key
+chmod 600 bandit14.key
+ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220
+```
+
+![](assets/bandit13/step1.png)
+![](assets/bandit13/step2.png)
+![](assets/bandit13/step3.png)
+
+> **Password:** MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+
+### Explanation
+
+>In this level, instead of a password, a private SSH key is provided.  
+>The password for the next level can only be read by user **bandit14**, so we must authenticate as that user using the given private key.
+
+>Using SSH with the `-i` option allows us to specify the private key file and log in directly as **bandit14**, gaining access to the next level.
+
+>Don't forget to cat /etc/bandit_pass/bandit14
+
+### Into the next!
+
+```bash
+ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220
+```
+or
+```bash
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+```
+
+```bash
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+```
+
+---
+
+## Level 14 → Level 15
+
+### Level Info
+
+>The password for the next level can be retrieved by submitting the password of the current level to **port 30000 on localhost**.
+
+---
+
+### Commands
+
+```bash
+echo "MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS" | nc localhost 30000
+```
+
+![](assets/bandit14/step1.png)
+
+> **Password:** 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+
+### Explanation
+
+>This level introduces a network service running locally on the server.  
+>The password must be sent to **port 30000 on localhost**.
+
+>Using `echo`, the current password is provided as input.  
+>The pipe (`|`) forwards this input to `nc` (netcat), which opens a TCP connection to the specified port.
+
+>When the correct password is received, the service returns the password for the next level.
+
+### Into the next!
+
+```bash
+ssh bandit15@bandit.labs.overthewire.org -p 2220
+```
+
+```bash
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+```
+
+---
+
+## Level 15 → Level 16
+
+### Level Info
+
+>The password for the next level can be retrieved by submitting the password of the current level to **port 30001 on localhost** using SSL/TLS encryption.
+
+>**Helpful note: Getting “DONE”, “RENEGOTIATING” or “KEYUPDATE”? Read the “CONNECTED COMMANDS” section in the manpage.**
+
+---
+
+### Commands
+
+```bash
+openssl s_client -connect localhost:30001
+# input the password from Bandit14: 8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+```
+
+![](assets/bandit15/step2.png)
+![](assets/bandit15/step1.png)
+
+> **Password:** kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+### Explanation
+
+>`openssl s_client` is used to establish a TLS connection to `localhost` on port `30001`.  
+>Once connected, the current level’s password is typed manually and sent to the service.
+
+>If the password is correct, the server responds with the password for the next level.
+
+>Messages like **DONE**, **RENEGOTIATING**, or **KEYUPDATE** are part of the TLS handshake and can be ignored.
+
+### Into the next!
+
+```bash
+ssh bandit16@bandit.labs.overthewire.org -p 2220
+```
+
+```bash
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+```
+
+---
